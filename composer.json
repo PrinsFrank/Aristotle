@@ -1,22 +1,25 @@
 {
-    "name": "prinsfrank/socrates",
+    "name": "prinsfrank/aristotle",
     "description": "ADRL cli",
     "type": "library",
     "license": "MIT",
     "bin": ["bin/socrates"],
     "autoload": {
         "psr-4": {
-            "PrinsFrank\\Socrates\\": "src/"
+            "PrinsFrank\\Aristotle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PrinsFrank\\Socrates\\Tests\\": "tests/"
+            "PrinsFrank\\Aristotle\\Tests\\": "tests/"
         }
     },
     "require": {
         "php": "^8.1 || ^8.2 || ^8.3",
-        "composer-runtime-api": "^2.2"
+        "composer-runtime-api": "^2.2",
+        "prinsfrank/adrl-parser": "dev-main",
+        "symfony/console": "^7.0",
+        "prinsfrank/enums": "^1.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^11.0",
