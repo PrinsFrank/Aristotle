@@ -1,2 +1,2 @@
-# Socrates
-ADRL parser
+# Aristotle
+An ADRL CLI to debate efficiently
