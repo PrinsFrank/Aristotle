@@ -35,5 +35,11 @@
             "@unit",
             "@cs"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../ADRL-Parser"
+        }
+    ]
 }

@@ -1,8 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-use PrinsFrank\Aristotle\Commands\CreateConclusionCommand;
-use PrinsFrank\Aristotle\Commands\CreatePremiseCommand;
+use PrinsFrank\Aristotle\Commands\ConclusionCommand;
+use PrinsFrank\Aristotle\Commands\PremiseCommand;
 use PrinsFrank\Aristotle\Configuration;
 use Symfony\Component\Console\Application;
 
@@ -15,8 +15,8 @@ $configuration = new Configuration(
 
 $application = new Application();
 $application->addCommands([
-    new CreateConclusionCommand($configuration),
-    new CreatePremiseCommand($configuration),
+                              new ConclusionCommand($configuration),
+                              new PremiseCommand($configuration),
 ]);
 
 $application->run();
