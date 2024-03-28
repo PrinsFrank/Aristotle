@@ -1,22 +1,23 @@
 #!/usr/bin/env php
 <?php
 
-use PrinsFrank\Aristotle\Commands\ConclusionCommand;
-use PrinsFrank\Aristotle\Commands\PremiseCommand;
-use PrinsFrank\Aristotle\Configuration;
-use Symfony\Component\Console\Application;
-
 include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
 
-$configuration = new Configuration(
+$configuration = new \PrinsFrank\Aristotle\Configuration(
     getenv('ARISTOTLE_ROOT_FOLDER') ?: dirname(__DIR__),
     getenv('ARISTOTLE_ROOT_FILE_NAME') ?: 'aristotle.adrl',
 );
 
-$application = new Application();
-$application->addCommands([
-                              new ConclusionCommand($configuration),
-                              new PremiseCommand($configuration),
-]);
+$application = new \Symfony\Component\Console\Application();
+$application->addCommands(
+    [
+      new \PrinsFrank\Aristotle\Commands\ConclusionCommand($configuration),
+      new \PrinsFrank\Aristotle\Commands\FalseCommand($configuration),
+      new \PrinsFrank\Aristotle\Commands\InValidCommand($configuration),
+      new \PrinsFrank\Aristotle\Commands\PremiseCommand($configuration),
+      new \PrinsFrank\Aristotle\Commands\TrueCommand($configuration),
+      new \PrinsFrank\Aristotle\Commands\ValidCommand($configuration),
+    ]
+);
 
 $application->run();
