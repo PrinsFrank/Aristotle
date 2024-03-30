@@ -38,7 +38,7 @@ class ComponentSetFormatter
                 null => Foreground::LightBlue,
             };
         } elseif ($identity instanceof Conclusion) {
-            $foreground = match($componentSet->getConclusionState($identity)){
+            $foreground = match($componentSet->getConclusionState($identity)) {
                 true => Foreground::LightGreen,
                 false => Foreground::LightRed,
                 null => Foreground::LightBlue,

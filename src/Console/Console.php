@@ -13,7 +13,7 @@ class Console
         }
 
         $controlSequenceInts = array_map(
-            fn(Foreground|Background|Set $backedEnum) => $backedEnum->value,
+            fn (Foreground|Background|Set $backedEnum) => $backedEnum->value,
             $controlSequences
         );
 
