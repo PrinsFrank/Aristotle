@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Aristotle\ComponentSet;
 
-use Exception;
 use InvalidArgumentException;
 use PrinsFrank\ADLParser\Argument\Component\Identity\Conclusion;
 use PrinsFrank\ADLParser\Argument\Component\Identity\Identity;
@@ -20,8 +19,8 @@ use PrinsFrank\Aristotle\Console\Foreground;
 class ComponentSetFormatter
 {
     /**
-     * @return list<string>
      * @throws InvalidArgumentException
+     * @return list<string>
      */
     public function getFormattedInfo(ComponentSet $componentSet, string $identifier, int $level = 0): array
     {
