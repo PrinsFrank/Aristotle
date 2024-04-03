@@ -13,7 +13,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand('valid')]
+#[AsCommand('valid', 'Mark a conclusion as invalid')]
 class ValidCommand extends AristotleCommand
 {
     protected function configure(): void

@@ -11,7 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand('premise')]
+#[AsCommand('premise', 'Add or show a premise')]
 class PremiseCommand extends AristotleCommand
 {
     protected function configure(): void

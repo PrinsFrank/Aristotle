@@ -11,7 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand('conclusion')]
+#[AsCommand('conclusion', 'Add or show a conclusion')]
 class ConclusionCommand extends AristotleCommand
 {
     protected function configure(): void

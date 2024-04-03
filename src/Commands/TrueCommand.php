@@ -13,7 +13,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-#[AsCommand('true')]
+#[AsCommand('true', 'Mark a premise as false')]
 class TrueCommand extends AristotleCommand
 {
     protected function configure(): void
