@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace PrinsFrank\Aristotle\ComponentSet;
 
+use Exception;
+use InvalidArgumentException;
 use PrinsFrank\ADLParser\Argument\Component\Identity\Conclusion;
 use PrinsFrank\ADLParser\Argument\Component\Identity\Identity;
 use PrinsFrank\ADLParser\Argument\Component\Identity\Premise;
@@ -17,7 +19,11 @@ use PrinsFrank\Aristotle\Console\Foreground;
 
 class ComponentSetFormatter
 {
-    public function getFormattedInfo(ComponentSet $componentSet, string $identifier, $level = 0): array
+    /**
+     * @return list<string>
+     * @throws InvalidArgumentException
+     */
+    public function getFormattedInfo(ComponentSet $componentSet, string $identifier, int $level = 0): array
     {
         $array = [];
         $identity = $componentSet->getIdentity($identifier);
@@ -32,7 +38,7 @@ class ComponentSetFormatter
         } elseif ($identity instanceof FalseModifier || $identity instanceof InValidModifier) {
             $foreground = Foreground::LightRed;
         } elseif ($identity instanceof Premise) {
-            $foreground = match($componentSet->getPromiseState($identity)) {
+            $foreground = match($componentSet->getPremiseState($identity)) {
                 true => Foreground::LightGreen,
                 false => Foreground::LightRed,
                 null => Foreground::LightBlue,
@@ -43,6 +49,8 @@ class ComponentSetFormatter
                 false => Foreground::LightRed,
                 null => Foreground::LightBlue,
             };
+        } else {
+            throw new InvalidArgumentException('Unsupported identity/modifier provided');
         }
 
         $array[] = $this->formatInfo($level, $identity, $foreground);
@@ -53,9 +61,10 @@ class ComponentSetFormatter
         return $array;
     }
 
+    /** @throws InvalidArgumentException */
     private function formatInfo(int $level, Identity|Modifier $component, Foreground $foreground): string
     {
-        $label = ($component->label !== null ? ' (' . $component->label . ')' : '');
+        $label = (property_exists($component, 'label') && $component->label !== null ? ' (' . $component->label . ')' : '');
 
         return str_repeat('  ', $level) . match ($component::class) {
             Conclusion::class => Console::format('Conclusion: ' . $component->identifier . $label, $foreground),
@@ -64,6 +73,7 @@ class ComponentSetFormatter
             InValidModifier::class => Console::format('- Invalid' . $label, $foreground),
             TrueModifier::class => Console::format('+ True' . $label, $foreground),
             ValidModifier::class => Console::format('+ valid' . $label, $foreground),
+            default => throw new InvalidArgumentException('Unsupported indentity/modifier provided'),
         };
     }
 }

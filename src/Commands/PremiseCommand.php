@@ -4,26 +4,38 @@ declare(strict_types=1);
 namespace PrinsFrank\Aristotle\Commands;
 
 use PrinsFrank\ADLParser\Argument\Component\Identity\Premise;
+use PrinsFrank\ADLParser\Exception\DuplicateDefinitionException;
+use PrinsFrank\ADLParser\Exception\InvalidComponentException;
+use PrinsFrank\ADLParser\Exception\InvalidFileException;
 use PrinsFrank\ADLParser\Parser;
 use PrinsFrank\Aristotle\ComponentSet\ComponentSetFormatter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand('premise', 'Add or show a premise')]
 class PremiseCommand extends AristotleCommand
 {
+    /** @throws InvalidArgumentException */
     protected function configure(): void
     {
         $this->addArgument('identifier')
             ->addArgument('label');
     }
 
+    /**
+     * @throws InvalidArgumentException
+     * @throws DuplicateDefinitionException
+     * @throws InvalidFileException
+     * @throws InvalidComponentException
+     * @throws \InvalidArgumentException
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $identifier = $input->getArgument('identifier');
-        if ($identifier === null) {
+        if ($identifier === null || is_string($identifier) === false) {
             $output->writeln('Please provide an identifier to read or add.');
 
             return Command::FAILURE;

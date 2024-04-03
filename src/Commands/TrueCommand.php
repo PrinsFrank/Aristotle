@@ -5,27 +5,38 @@ namespace PrinsFrank\Aristotle\Commands;
 
 use PrinsFrank\ADLParser\Argument\Component\Identity\Premise;
 use PrinsFrank\ADLParser\Argument\Component\Modifier\TrueModifier;
+use PrinsFrank\ADLParser\Exception\DuplicateDefinitionException;
+use PrinsFrank\ADLParser\Exception\InvalidComponentException;
+use PrinsFrank\ADLParser\Exception\InvalidFileException;
 use PrinsFrank\ADLParser\Parser;
 use PrinsFrank\Aristotle\Console\Console;
 use PrinsFrank\Aristotle\Console\Foreground;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 #[AsCommand('true', 'Mark a premise as false')]
 class TrueCommand extends AristotleCommand
 {
+    /** @throws InvalidArgumentException */
     protected function configure(): void
     {
         $this->addArgument('identifier')
             ->addArgument('label');
     }
 
+    /**
+     * @throws InvalidArgumentException
+     * @throws DuplicateDefinitionException
+     * @throws InvalidFileException
+     * @throws InvalidComponentException
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $identifier = $input->getArgument('identifier');
-        if ($identifier === null) {
+        if ($identifier === null || is_string($identifier) === false) {
             $output->writeln(Console::format('Please provide an identifier to mark as true.', Foreground::LightRed));
 
             return Command::FAILURE;
