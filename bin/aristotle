@@ -11,12 +11,12 @@ $configuration = new \PrinsFrank\Aristotle\Configuration(
 $application = new \Symfony\Component\Console\Application();
 $application->addCommands(
     [
-      new \PrinsFrank\Aristotle\Commands\ConclusionCommand($configuration),
-      new \PrinsFrank\Aristotle\Commands\FalseCommand($configuration),
-      new \PrinsFrank\Aristotle\Commands\InValidCommand($configuration),
-      new \PrinsFrank\Aristotle\Commands\PremiseCommand($configuration),
-      new \PrinsFrank\Aristotle\Commands\TrueCommand($configuration),
-      new \PrinsFrank\Aristotle\Commands\ValidCommand($configuration),
+        new \PrinsFrank\Aristotle\Commands\ConclusionCommand($configuration),
+        new \PrinsFrank\Aristotle\Commands\FalseCommand($configuration),
+        new \PrinsFrank\Aristotle\Commands\InValidCommand($configuration),
+        new \PrinsFrank\Aristotle\Commands\PremiseCommand($configuration),
+        new \PrinsFrank\Aristotle\Commands\TrueCommand($configuration),
+        new \PrinsFrank\Aristotle\Commands\ValidCommand($configuration),
     ]
 );
 

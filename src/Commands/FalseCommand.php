@@ -19,7 +19,7 @@ class FalseCommand extends AristotleCommand
     protected function configure(): void
     {
         $this->addArgument('identifier')
-             ->addArgument('label');
+            ->addArgument('label');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
