@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-$rootComposerPath = isset($_composer_autoload_path) ? dirname($_composer_autoload_path) : dirname(__DIR__);
+$rootComposerPath = isset($_composer_autoload_path) ? dirname($_composer_autoload_path, 4) : dirname(__DIR__);
 
 include $rootComposerPath . '/vendor/autoload.php';
 
