@@ -1,5 +1,5 @@
 # Aristotle
-An ADRL CLI to debate efficiently
+An ADRL CLI to debate efficiently like Ἀριστοτέλης.
 
 ## Commands
 
