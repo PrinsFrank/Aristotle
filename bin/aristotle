@@ -1,10 +1,12 @@
 #!/usr/bin/env php
 <?php
 
-include $_composer_autoload_path ?? __DIR__ . '/../vendor/autoload.php';
+$rootComposerPath = isset($_composer_autoload_path) ? dirname($_composer_autoload_path) : dirname(__DIR__);
+
+include $rootComposerPath . '/vendor/autoload.php';
 
 $configuration = new \PrinsFrank\Aristotle\Configuration(
-    getenv('ARISTOTLE_ROOT_FOLDER') ?: dirname(__DIR__),
+    getenv('ARISTOTLE_ROOT_FOLDER') ?: $rootComposerPath,
     getenv('ARISTOTLE_ROOT_FILE_NAME') ?: 'aristotle.adrl',
 );
 
