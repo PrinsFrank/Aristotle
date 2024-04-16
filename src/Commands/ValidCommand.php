@@ -63,7 +63,7 @@ class ValidCommand extends AristotleCommand
         }
 
         $label = $input->getArgument('label');
-        file_put_contents($this->configuration->getConfigPath(), PHP_EOL . 'valid ' . $identifier . ($label !== null ? ' ' . $label : '') . PHP_EOL, FILE_APPEND);
+        file_put_contents($this->configuration->getConfigPath(), PHP_EOL . 'valid ' . $identifier . ($label !== null ? ' "' . $label . '"' : '') . PHP_EOL, FILE_APPEND);
         $output->writeln(Console::format('Added validity', Foreground::LightGreen));
 
         return Command::SUCCESS;

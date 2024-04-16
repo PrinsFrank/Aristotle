@@ -63,7 +63,7 @@ class FalseCommand extends AristotleCommand
         }
 
         $label = $input->getArgument('label');
-        file_put_contents($this->configuration->getConfigPath(), PHP_EOL . 'false ' . $identifier . ($label !== null ? ' ' . $label : '') . PHP_EOL, FILE_APPEND);
+        file_put_contents($this->configuration->getConfigPath(), PHP_EOL . 'false ' . $identifier . ($label !== null ? ' "' . $label . '"' : '') . PHP_EOL, FILE_APPEND);
         $output->writeln('Added truthiness');
 
         return Command::SUCCESS;
